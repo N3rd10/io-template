@@ -1,9 +1,6 @@
-// webrtc.js
-
 const configuration = {
     iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
 };
-
 let peerConnection;
 let dataChannel;
 
@@ -19,11 +16,12 @@ function createConnection() {
     dataChannel.onmessage = (event) => {
         console.log("Received message:", event.data);
         // Handle received game data
+        handleGameData(JSON.parse(event.data));
     };
 
     peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
-            // Send the ICE candidate to the other peer
+            console.log("New ICE candidate:", JSON.stringify(event.candidate));
         }
     };
 
@@ -32,6 +30,7 @@ function createConnection() {
         dataChannel.onmessage = (event) => {
             console.log("Received message:", event.data);
             // Handle received game data
+            handleGameData(JSON.parse(event.data));
         };
     };
 }
@@ -40,17 +39,16 @@ async function createOffer() {
     createConnection();
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
-    return offer;
+    document.getElementById('offer').value = JSON.stringify(offer);
 }
 
-async function createAnswer(offer) {
-    createConnection();
-    await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-    const answer = await peerConnection.createAnswer();
-    await peerConnection.setLocalDescription(answer);
-    return answer;
+async function setAnswer() {
+    const answer = JSON.parse(document.getElementById('answer').value);
+    await peerConnection.setRemoteDescription(answer);
 }
 
-async function handleAnswer(answer) {
-    await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+// Example function to handle game data
+function handleGameData(data) {
+    console.log("Handling game data:", data);
+    // Update game state based on received data
 }
