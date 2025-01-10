@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplayer IO Game</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <title>WebRTC Manual Signaling Game</title>
 </head>
 <body>
-    <h1>Multiplayer IO Game</h1>
-    <div id="game-container"></div>
+    <h1>WebRTC Manual Signaling Game</h1>
+    <textarea id="offer" placeholder="Offer will appear here" rows="10" cols="50"></textarea>
+    <textarea id="answer" placeholder="Paste answer here" rows="10" cols="50"></textarea>
+    <button onclick="createOffer()">Create Offer</button>
+    <button onclick="setAnswer()">Set Answer</button>
 
-    <script src="game.js"></script>
     <script src="webrtc.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
