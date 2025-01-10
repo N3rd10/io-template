@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Manual Signaling - Initiator</title>
+</head>
+<body>
+    <h1>WebRTC Manual Signaling - Initiator</h1>
+    <textarea id="offer" placeholder="Offer will appear here" rows="10" cols="50"></textarea>
+    <textarea id="answer" placeholder="Paste answer here" rows="10" cols="50"></textarea>
+    <textarea id="ice-candidate" placeholder="Paste ICE candidate here" rows="5" cols="50"></textarea>
+    <button onclick="createOffer()">Create Offer</button>
+    <button onclick="setAnswer()">Set Answer</button>
+    <button onclick="addIceCandidate(JSON.parse(document.getElementById('ice-candidate').value))">Add ICE Candidate</button>
+
+    <script src="webrtc.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
